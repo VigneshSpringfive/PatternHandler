@@ -9,7 +9,6 @@ public class PatternApplication {
     {
         String sourceStr = "abcb12acbacb21fvefaerfgqerfg13er34r34r4r34$%#$#$@#E@#E@#R$REFVEFVWRF#F#$R#$R@#$E@#$@E";
         String patternExpression = "E@";
-        boolean reverseptrn;
         Pattern pattern = getPattern(patternExpression);
         Matcher matcher = getMatcher(pattern, sourceStr);
         System.out.println("****************************************************");
@@ -44,10 +43,6 @@ public class PatternApplication {
     public static String reverseStr(String str)
     {
         return new StringBuilder(str).reverse().toString();
-    }
-    public static int reversePatternCount(String sourceString,String pattern)
-    {
-        return countOccurrences(getMatcher(getPattern(reverseStr(pattern)), sourceString));
     }
     public static int countOccurrences(Matcher matcher) {
         return (int) matcher.results().count();
