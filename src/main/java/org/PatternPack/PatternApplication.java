@@ -41,6 +41,7 @@ public class PatternApplication {
                 output.append("Reverse pattern found : No").append("\n");
 
             }
+
         }
         output.append("****************************************************");
         System.out.println(output);
