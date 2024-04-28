@@ -1,5 +1,6 @@
 package org.patternpack;
 
+import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -7,30 +8,42 @@ public class PatternApplication {
 
     public  static void main(String[] arg)
     {
-        String sourceStr = "abcb12acbacb21fvefaerfgqerfg13er34r34r4r34$%#$#$@#E@#E@#R$REFVEFVWRF#F#$R#$R@#$E@#$@E";
-        String patternExpression = "E@";
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter source string: ");
+        String sourceStr = scanner.nextLine();
+
+        System.out.print("Enter sub string: ");
+        String patternExpression = scanner.nextLine();
+        scanner.close();
+
         Pattern pattern = getPattern(patternExpression);
         Matcher matcher = getMatcher(pattern, sourceStr);
-        System.out.println("****************************************************");
-        System.out.println("Source String\t:\t"+sourceStr);
-        System.out.println("Source String Length\t:\t"+sourceStr.length());
-        System.out.println("Pattern String\t:\t"+patternExpression);
-        System.out.println("Matching Count\t: " + countOccurrences(matcher) );
-        System.out.println("Source String without substring\t:\t"+sourceStr.replace(patternExpression, ""));
-        System.out.println("Source String Length without substring\t: "+sourceStr.replace(patternExpression, "").length());
+
+        StringBuilder output=new StringBuilder();
+        output.append("****************************************************\n");
+        output.append("Source String : ").append(sourceStr).append("\n");
+        output.append("Source String Length : ").append(sourceStr.length()).append("\n");
+        output.append("Pattern String : ").append(patternExpression).append("\n");
+        output.append("Matching Count : ").append(countOccurrences(matcher)).append("\n");
+        output.append("Source String without substring : ").append(sourceStr.replace(patternExpression, "")).append("\n");
+        output.append("Source String Length without substring : ").append(sourceStr.replace(patternExpression, "").length()).append("\n");
         //not palindrome
         if(!reverseStr(patternExpression).equals(patternExpression))
         {
-            System.out.println("Reverse pattern\t: " + reverseStr(patternExpression));
-            int revresecnt = countOccurrences(getMatcher(getPattern(reverseStr(patternExpression)), sourceStr));
-            if (revresecnt > 0) {
-                System.out.println("Reverse pattern found\t: Yes");
-                System.out.println("Reverse Matching Count\t: " + revresecnt);
+            output.append("Reverse pattern : ").append(reverseStr(patternExpression)).append("\n");
+
+            int reverseCnt = countOccurrences(getMatcher(getPattern(reverseStr(patternExpression)), sourceStr));
+            if (reverseCnt > 0) {
+                output.append("Reverse pattern found : Yes  ").append("Reverse Matching Count : ").append(reverseCnt).append("\n");
+
             } else {
-                System.out.println("Reverse pattern found\t: No");
+                output.append("Reverse pattern found : No").append("\n");
+
             }
         }
-        System.out.println("****************************************************");
+        output.append("****************************************************");
+        System.out.println(output);
 
     }
     public static Pattern getPattern(String patternExpression) {
