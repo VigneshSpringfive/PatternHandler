@@ -1,11 +1,11 @@
-package org.PatternPack;
+package org.patternpack;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PatternApplication {
 
-    public  static void main(String arg[])
+    public  static void main(String[] arg)
     {
         String sourceStr = "abcb12acbacb21fvefaerfgqerfg13er34r34r4r34$%#$#$@#E@#E@#R$REFVEFVWRF#F#$R#$R@#$E@#$@E";
         String patternExpression = "E@";
@@ -16,8 +16,8 @@ public class PatternApplication {
         System.out.println("Source String Length\t:\t"+sourceStr.length());
         System.out.println("Pattern String\t:\t"+patternExpression);
         System.out.println("Matching Count\t: " + countOccurrences(matcher) );
-        System.out.println("Source String without substring\t:\t"+sourceStr.replaceAll(patternExpression, ""));
-        System.out.println("Source String Length without substring\t: "+sourceStr.replaceAll(patternExpression, "").length());
+        System.out.println("Source String without substring\t:\t"+sourceStr.replace(patternExpression, ""));
+        System.out.println("Source String Length without substring\t: "+sourceStr.replace(patternExpression, "").length());
         //not palindrome
         if(!reverseStr(patternExpression).equals(patternExpression))
         {
@@ -31,7 +31,7 @@ public class PatternApplication {
             }
         }
         System.out.println("****************************************************");
-       // countPattern(matcher, sourceStr, patternExpression);
+
     }
     public static Pattern getPattern(String patternExpression) {
         return Pattern.compile(patternExpression);
